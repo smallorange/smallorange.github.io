@@ -103,7 +103,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># make LED show red.</span><br><span class="line">echo &quot;255 0 0&quot; &gt; /sys/class/led/g15::kbd_backlight/intensity</span><br></pre></td></tr></table></figure>
 
 <p>and change the brightness through</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;100&quot; &gt; /sys/class/led/lg15::kdb_backlight_led/brightness</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;100&quot; &gt; /sys/class/led/g15::kbd_backlight/brightness</span><br></pre></td></tr></table></figure>
 
 <p>Thank you for Hans’ review.</p>
 <p>[1] <a target="_blank" rel="noopener" href="https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u">https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u</a></p>
