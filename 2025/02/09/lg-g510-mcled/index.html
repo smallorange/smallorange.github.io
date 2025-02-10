@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Logitech G510 keyboard backlight supports multicolor LED API | Kate&#39;s Blog</title>
+  <meta name="author" content="Kate Hsuan">
+  
+  <meta name="description" content="We made the Logitech G510 keyboard to support standard multi-color LED API to configure the keyboard backlight LED colors and brightness. The legacy s">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Logitech G510 keyboard backlight supports multicolor LED API"/>
+  <meta property="og:site_name" content="Kate&#39;s Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Kate&#39;s Blog</a></h1>
+  <h2><a href="/blog/">I am Kate cat.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/null">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-lg-g510-mcled" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-02-09T07:51:19.000Z"><a href="/blog/2025/02/09/lg-g510-mcled/">2025-02-09</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Logitech G510 keyboard backlight supports multicolor LED API</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>We made the Logitech G510 keyboard to support standard multi-color LED API to configure the keyboard backlight LED colors and brightness. The legacy sysfs property “color” was removed. We invite the user or apps that configure LED color through that property to use the new one.</p>
+<p>The G510 owner can change the color of the keyboard backlight LED through the following command</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># make LED show red.</span><br><span class="line">echo &quot;255 0 0&quot; &gt; /sys/class/led/g15::kbd_backlight/intensity</span><br></pre></td></tr></table></figure>
+
+<p>and change the brightness through</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;100&quot; &gt; /sys/class/led/lg15::kdb_backlight_led/brightness</span><br></pre></td></tr></table></figure>
+
+<p>Thank you for Hans’ review.</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u">https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/kernel/">kernel</a>, <a href="/blog/tags/linux-input/">linux-input</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://smallorange.github.io/blog/2025/02/09/lg-g510-mcled/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="smallorange.github.io/blog">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/tags/kernel/">kernel</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/linux-input/">linux-input</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/low-power-charger/">low power charger</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/upower/">upower</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+  <div class="widget widget-archives">
+    <h3 class="title">Archives</h3>
+    <div class="entry">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2025/02/">February 2025</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2025 Kate Hsuan
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

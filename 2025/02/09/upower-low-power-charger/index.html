@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>The policy for connecting a low power charger in Upower | Kate&#39;s Blog</title>
+  <meta name="author" content="Kate Hsuan">
+  
+  <meta name="description" content="Upower determines the battery charging status according to the battery charging status now. Upower sets the on_battery status to no when connecting an">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="The policy for connecting a low power charger in Upower"/>
+  <meta property="og:site_name" content="Kate&#39;s Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Kate&#39;s Blog</a></h1>
+  <h2><a href="/blog/">I am Kate cat.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/null">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-upower-low-power-charger" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-02-09T11:02:46.000Z"><a href="/blog/2025/02/09/upower-low-power-charger/">2025-02-09</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">The policy for connecting a low power charger in Upower</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>Upower determines the battery charging status according to the battery charging status now. Upower sets the on_battery status to <code>no</code> when connecting any kind of chargers. In other words, upower ignores the battery charging status (charging&#x2F;discharging) when any charger connects to a device. The original policy is good for the most of laptops with a traditional AC power adaptor. Today, we can charge the battery through a PD charger (a type-C charger) which provides different capability of charging. Yet, this cause the problems for the devices. For example, we play the cellphone game with a 5w charger and the battery discharges to maintain the performance. In this case, upower thinks that a AC charger is online so upower can ignore the battery status. Therefore, battery continue to discharge until running out of battery. The vital gaming data may lost.</p>
+<p>Alpine Linux folks found this issue and we tried to resolve it. Now, Upower was able to show the real status for the battery when a low power charger connect to the device. Upower determines the battery status based on the current value. Upower will set on_battery status to <code>yes</code>, if it finds the battery discharges (a negative current value) in any conditions. This work is waiting for Alpine Linux to test it. Once it get landed, this fix will be included in the next release of upower.</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/244">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/244</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/upower/">upower</a>, <a href="/blog/tags/low-power-charger/">low power charger</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://smallorange.github.io/blog/2025/02/09/upower-low-power-charger/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="smallorange.github.io/blog">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/tags/kernel/">kernel</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/linux-input/">linux-input</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/low-power-charger/">low power charger</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/upower/">upower</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+  <div class="widget widget-archives">
+    <h3 class="title">Archives</h3>
+    <div class="entry">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2025/02/">February 2025</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2025 Kate Hsuan
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
