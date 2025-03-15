@@ -63,7 +63,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p>Upower can only set one keyboard backlight LED brightness. It finds the first keyboard backlight LED sysfs entry and then set up the DBus API entry for it. This works on most of the laptops but can’t work on some gaming laptops which have more than one keyboard backlight LED needs to take care. Moreover, if a USB keyboard with backlight LED was attached to laptop, upower has to discover it and set up or remove the API entry dynamically. The previous MR [1] proposed an implementation to setup multiple brightness but it can’t add&#x2F;remove the device information automatically.<br>The new proposed MR [2] was based on udev event which gave as the device status when user install or remove a keyboard backlight LED device. Through this way, the DBus API entry and device information can be added&#x2F;removed with the the udev events like what we do for the batteries. In the mean time, a abstraction class for keyboard backlight LED was proposed so upower can support different implementation for Linux, FreeBSD, and more [3].  </p>
+        <p>Upower can only set one keyboard backlight LED brightness. It finds the first keyboard backlight LED sysfs entry and then set up the DBus API entry for it. This works on most of the laptops but can’t work on some gaming laptops which have more than one keyboard backlight LED needs to take care. Moreover, if a USB keyboard with backlight LED was attached to laptop, upower has to discover it and set up or remove the API entry dynamically. The previous MR [1] proposed an implementation to setup multiple brightness but it can’t add&#x2F;remove the device information automatically.<br>The new proposed MR [2] was based on udev event which gave as the device status when user install or remove a keyboard backlight LED device. Through this way, the DBus API entry and device information can be added&#x2F;removed with the the udev events like what we do for the batteries. In the mean time, a abstraction class for keyboard backlight LED was proposed so upower can support different implementation, such as Linux, FreeBSD, and more [3].  </p>
 <p>[1] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/203">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/203</a><br>[2] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/258">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/258</a><br>[3] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/issues/291">https://gitlab.freedesktop.org/upower/upower/-/issues/291</a></p>
 
       
@@ -179,13 +179,17 @@
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/brightness/">brightness</a><small>1</small></li>
+  
     <li><a href="/tags/kernel/">kernel</a><small>1</small></li>
+  
+    <li><a href="/tags/keyboard-backlight-LED/">keyboard backlight LED</a><small>1</small></li>
   
     <li><a href="/tags/linux-input/">linux-input</a><small>1</small></li>
   
     <li><a href="/tags/low-power-charger/">low power charger</a><small>1</small></li>
   
-    <li><a href="/tags/upower/">upower</a><small>1</small></li>
+    <li><a href="/tags/upower/">upower</a><small>2</small></li>
   
   </ul>
 </div>
