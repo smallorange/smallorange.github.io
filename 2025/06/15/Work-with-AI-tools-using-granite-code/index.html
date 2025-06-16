@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Kate Cat</title>
+  <title>Work with AI tools using-granite.code | Kate Cat</title>
   <meta name="author" content="Kate Hsuan">
   
   <meta name="description" content="@smallorange">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Work with AI tools using-granite.code"/>
   <meta property="og:site_name" content="Kate Cat"/>
 
   
@@ -46,8 +46,7 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article id="post-Work-with-AI-tools-using-granite-code" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Work-with-AI-tools-using-granite-code" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
     <header>
@@ -57,7 +56,7 @@
       
       
   
-    <h1 class="title"><a href="/2025/06/15/Work-with-AI-tools-using-granite-code/">Work with AI tools using-granite.code</a></h1>
+    <h1 class="p-name title" itemprop="headline name">Work with AI tools using-granite.code</h1>
   
 
     </header>
@@ -80,6 +79,11 @@
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/code-assistant/">code assistant</a>
+  </div>
+
       
       <div class="clearfix"></div>
     </footer>
@@ -87,124 +91,27 @@
 </article>
 
 
+<section id="comment">
+  <h1 class="title">Comments</h1>
 
-
-  <article id="post-upower-Support-Multiple-Keyboard-Backlight-LED-Control" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time class="dt-published" datetime="2025-03-13T15:01:20.000Z"><a href="/2025/03/13/upower-Support-Multiple-Keyboard-Backlight-LED-Control/">2025-03-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2025/03/13/upower-Support-Multiple-Keyboard-Backlight-LED-Control/">upower: Support Multiple Keyboard Backlight LED Control</a></h1>
-  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p>Upower can only set one keyboard backlight LED brightness. It finds the first keyboard backlight LED sysfs entry and then set up the DBus API entry for it. This works on most of the laptops but can’t work on some gaming laptops which have more than one keyboard backlight LED needs to take care. Moreover, if a USB keyboard with backlight LED was attached to laptop, upower has to discover it and set up or remove the API entry dynamically. The previous MR [1] proposed an implementation to setup multiple brightness but it can’t add&#x2F;remove the device information automatically.<br>The new proposed MR [2] was based on udev event which gave as the device status when user install or remove a keyboard backlight LED device. Through this way, the DBus API entry and device information can be added&#x2F;removed with the the udev events like what we do for the batteries. In the mean time, a abstraction class for keyboard backlight LED was proposed so upower can support different implementation, such as Linux, FreeBSD, and more [3].  </p>
-<p>[1] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/203">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/203</a><br>[2] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/258">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/258</a><br>[3] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/issues/291">https://gitlab.freedesktop.org/upower/upower/-/issues/291</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article id="post-upower-low-power-charger" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time class="dt-published" datetime="2025-02-09T11:02:46.000Z"><a href="/2025/02/09/upower-low-power-charger/">2025-02-09</a></time>
-      
+<div class="fb-comments" data-href="https://blog.kate-cat.com/2025/06/15/Work-with-AI-tools-using-granite-code/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
-    <h1 class="title"><a href="/2025/02/09/upower-low-power-charger/">The policy for connecting a low power charger in Upower</a></h1>
-  
+</section>
 
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p>Upower determines the battery charging status according to the battery charging status now. Upower sets the on_battery status to <code>no</code> when connecting any kind of chargers. In other words, upower ignores the battery charging status (charging&#x2F;discharging) when any charger connects to a device. The original policy is good for the most of laptops with a traditional AC power adaptor. Today, we can charge the battery through a PD charger (a type-C charger) which provides different capability of charging. Yet, this cause the problems for the devices. For example, we play the cellphone game with a 5w charger and the battery discharges to maintain the performance. In this case, upower thinks that a AC charger is online so upower can ignore the battery status. Therefore, battery continue to discharge until running out of battery. The vital gaming data may lost.</p>
-<p>Alpine Linux folks found this issue and we tried to resolve it. Now, Upower was able to show the real status for the battery when a low power charger connect to the device. Upower determines the battery status based on the current value. Upower will set on_battery status to <code>yes</code>, if it finds the battery discharges (a negative current value) in any conditions. This work is waiting for Alpine Linux to test it. Once it get landed, this fix will be included in the next release of upower.</p>
-<p>[1] <a target="_blank" rel="noopener" href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/244">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/244</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article id="post-lg-g510-mcled" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time class="dt-published" datetime="2025-02-09T07:51:19.000Z"><a href="/2025/02/09/lg-g510-mcled/">2025-02-09</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2025/02/09/lg-g510-mcled/">Logitech G510 keyboard backlight supports multicolor LED API</a></h1>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p>We made the Logitech G510 keyboard to support standard multi-color LED API to configure the keyboard backlight LED colors and brightness. The legacy sysfs property “color” was removed. We invite the user or apps that configure LED color through that property to use the new one.</p>
-<p>The G510 owner can change the color of the keyboard backlight LED through the following command</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># make LED show red.</span><br><span class="line">echo &quot;255 0 0&quot; &gt; /sys/class/led/g15::kbd_backlight/intensity</span><br></pre></td></tr></table></figure>
-
-<p>and change the brightness through</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;100&quot; &gt; /sys/class/led/g15::kbd_backlight/brightness</span><br></pre></td></tr></table></figure>
-
-<p>Thank you for Hans’ review.</p>
-<p>[1] <a target="_blank" rel="noopener" href="https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u">https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-<nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
