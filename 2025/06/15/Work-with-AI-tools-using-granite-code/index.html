@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Work with AI tools using-granite.code | Kate Cat</title>
+  <title>Work with AI tools using granite.code | Kate Cat</title>
   <meta name="author" content="Kate Hsuan">
   
   <meta name="description" content="@smallorange">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Work with AI tools using-granite.code"/>
+  <meta property="og:title" content="Work with AI tools using granite.code"/>
   <meta property="og:site_name" content="Kate Cat"/>
 
   
@@ -56,7 +56,7 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">Work with AI tools using-granite.code</h1>
+    <h1 class="p-name title" itemprop="headline name">Work with AI tools using granite.code</h1>
   
 
     </header>
@@ -65,13 +65,23 @@
         <p>The used of AI tool to speed up the coding efficiency becomes a new trend in the programming field and industry. The upstream contributors and maintainers are trying to use those tool to improve the development speed and reduce the workload. Those new technologies also catch my eyes and I’ll give them a try. Many AI code assistance tools were proposed and they were based on the open AI model, for example Github copilot. But If you concern about the security and you don’t allow the information leak.</p>
 <p>Here I’ll ask the local model Granite.code to tell us how to install and deply it locally. It gave me the answer shown bellow.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">As an AI developed by IBM, I don&#x27;t have the capability to directly guide you through deploying Granite.Code</span><br><span class="line">on your local machine as it&#x27;s not publicly available for such use. However, I can provide a general outline</span><br><span class="line">of steps you might follow if Granite.Code were available for local deployment:</span><br><span class="line"></span><br><span class="line">Check System Requirements: Ensure your laptop meets the necessary system requirements to run Granite.Code.</span><br><span class="line">This typically includes specifications like operating system version, RAM, and CPU capabilities.</span><br><span class="line"></span><br><span class="line">Download the Software: If Granite.Code were publicly available, you would download it from an official source.</span><br><span class="line">As of now, there&#x27;s no public release for local deployment.</span><br><span class="line"></span><br><span class="line">Installation: Extract or run the installer, following the instructions provided in the documentation. This</span><br><span class="line">usually involves agreeing to terms and conditions, choosing installation directory, etc.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>Hmm, It try to invite the user to use the Could version. Here is the steps to deploy Granite.code to your local laptop. Moreover, first, you have to ensure you have a Mac M2 or have a GPU support. Then, checkout the IBM websit to get the detailed step to deploy it and the URLs are shown as follows.</p>
+<p>Hmm, It try to invite the user to use the Could version. Here is the steps to deploy Granite.code to your local laptop. Moreover, first, you have to ensure you have a Mac M2 or have a GPU support. Then, checkout the IBM website to get the detailed step to deploy it and the URLs are shown as follows.</p>
 <ul>
 <li>Deploy ollama on a Mac <a target="_blank" rel="noopener" href="https://www.ibm.com/granite/docs/run/granite-with-ollama/mac/">https://www.ibm.com/granite/docs/run/granite-with-ollama/mac/</a></li>
 <li>vscode plugin, IBM Waston X code assistant <a target="_blank" rel="noopener" href="https://www.ibm.com/granite/docs/use-cases/coding-assistant/">https://www.ibm.com/granite/docs/use-cases/coding-assistant/</a></li>
 </ul>
 <p>My configuration is a bit tricky since my working laptop doesn’t have a GPU or something can accelerate the AI compute. So, I ran the model on my Mac M2 (Yes, a Mac, haha) and tweaked the Watson code assistant to access the API server on my M2.</p>
-<p>OK, now, I ask granite.code for a Glib hello world example and here is the answer.<br><img src="/hello.png" alt="Alt描述"></p>
+<p>OK, now, I ask granite.code for a Glib hello world example and here is the answer. That gave a pieces of example and the expected out comes.<br><img src="/2025/06/15/Work-with-AI-tools-using-granite-code/hello.png" alt="Hello world"></p>
+<p>Watson code assistant provide four main functions, Describe the code, unit test generator, document generator, and code completion. However, M2 is slow so I have to skip the code completion. I really love to use code describe, it give me a glance if I first trace the code.<br>Here is the example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/explain up_daemon_get_on_ac_local</span><br></pre></td></tr></table></figure>
+<p>I got:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">This C code is a function named </span><br><span class="line">up_daemon_get_on_ac_local</span><br><span class="line">. Here&#x27;s a breakdown of what it does:</span><br><span class="line"></span><br><span class="line">Function Signature:</span><br><span class="line"></span><br><span class="line">The function takes two parameters: a pointer to an </span><br><span class="line">UpDaemon</span><br><span class="line"> structure (</span><br><span class="line">daemon</span><br><span class="line">) and a boolean pointer (</span><br><span class="line">has_ac</span><br><span class="line">).</span><br><span class="line">It returns a boolean value (</span><br><span class="line">gboolean</span><br><span class="line">).</span><br><span class="line">Local Variables:</span><br><span class="line">...</span><br><span class="line">&lt;skip&gt; </span><br><span class="line">...</span><br><span class="line">In summary, this function checks each device associated with a daemon to see if there&#x27;s at least one that is both online and has AC power. If such a device exists, it sets </span><br><span class="line">result</span><br><span class="line">Copy to TRUE; otherwise, it remains FALSE. It also optionally updates the </span><br><span class="line">has_ac</span><br><span class="line"> parameter if set.</span><br></pre></td></tr></table></figure>
+<p>It gave me a summary of input parameters, local vaiables, and a summary of the function. It took 1min to analyze the code<br>and generate the result. It is useful before you deep dive into the code.</p>
+<p>The document generator generate the doxygen comment format. It it a bit different from GTK comment but I can translate<br>it to the GTK format. That is good for me. The example was shown as follows. It looks normal but it still needs some<br>work to make it to a API document.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @brief Retrieves whether the system is on AC power locally.</span><br><span class="line"> * </span><br><span class="line"> * This function checks each device in the list of power devices to determine if any are currently connected to AC power.</span><br><span class="line"> * If the &#x27;has_ac&#x27; parameter is not NULL, it will be set to TRUE if at least one device is connected to AC power.</span><br><span class="line"> * The main return value (result) indicates whether any device was found to be on AC power.</span><br><span class="line"> * </span><br><span class="line"> * @param daemon A pointer to an UpDaemon structure containing the list of power devices.</span><br><span class="line"> * @param has_ac A pointer to a boolean variable that will be set to TRUE if at least one device is connected to AC power, if not NULL.</span><br><span class="line"> * @return gboolean - Returns TRUE if any device was found on AC power, FALSE otherwise.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+
+<p>For the unit test code generator, it only gave the gtest code. However, for our Glib developers, we can’t use this feature.</p>
+<p>Coding with a local AI assistance is a very good idea. It is like a virtual colleague to answer your question. However, it<br>needs a powerful computer to make it come true. My Mac M2 took a few minutes to analyze question and generate the result.<br>Base on this performance, The code completion can’t be a really powerful tool for me. The feature mentioned above is<br>nice and worst to wait for the result. It inspired me to make higher quality documents and it also listed all the possible<br>stuff. To have a AI tools for coding actually improves the code quality and development efficiency.</p>
 
       
     </div>
@@ -81,7 +91,7 @@
         
   
   <div class="tags">
-    <a href="/tags/AI/">AI</a>, <a href="/tags/code-assistant/">code assistant</a>
+    <a href="/tags/AI/">AI</a>, <a href="/tags/AI-code-assistant/">AI code assistant</a>
   </div>
 
       
@@ -130,9 +140,9 @@
   
     <li><a href="/tags/AI/">AI</a><small>1</small></li>
   
-    <li><a href="/tags/brightness/">brightness</a><small>1</small></li>
+    <li><a href="/tags/AI-code-assistant/">AI code assistant</a><small>1</small></li>
   
-    <li><a href="/tags/code-assistant/">code assistant</a><small>1</small></li>
+    <li><a href="/tags/brightness/">brightness</a><small>1</small></li>
   
     <li><a href="/tags/kernel/">kernel</a><small>1</small></li>
   
