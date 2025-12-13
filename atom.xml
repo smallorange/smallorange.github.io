@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Kate Cat</title>
+  
+  <subtitle>@smallorange</subtitle>
+  <link href="https://blog.kate-cat.com/atom.xml" rel="self"/>
+  
+  <link href="https://blog.kate-cat.com/"/>
+  <updated>2025-12-13T08:48:52.771Z</updated>
+  <id>https://blog.kate-cat.com/</id>
+  
+  <author>
+    <name>Kate Hsuan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Eliminating the Monitor Daemon: New PSI and Poll Backends for Glib&#39;s GMemoryMonitor API</title>
+    <link href="https://blog.kate-cat.com/2025/12/13/Eliminating-the-Monitor-Daemon-New-PSI-and-Poll-Backends-for-Glib-s-GMemoryMonitor-API/"/>
+    <id>https://blog.kate-cat.com/2025/12/13/Eliminating-the-Monitor-Daemon-New-PSI-and-Poll-Backends-for-Glib-s-GMemoryMonitor-API/</id>
+    <published>2025-12-13T08:34:18.000Z</published>
+    <updated>2025-12-13T08:48:52.771Z</updated>
+    
+    <content type="html"><![CDATA[<p>The GMemoryMonitor [1] API always works with a memory monitoring backend that periodically monitors the memory usage and then signals the GMemoryMonitor API about the low memory status. The monitor daemon monitors the system memory usage and listens to the Linux Kernel memory pressure stall information (PSI) [2], then reports the event to the GMemoryMonitor API via DBus signal.  The daemon signals the application and then the application starts to reduce its memory usage demand. However, the reliance on a daemon means GMemoryMonitor may not be able to work if the daemon fails or if the application is running in a container. These backends daemons support the API and Linux system, including RHEL and Fedora, to run.To simplify the data flow and reduce the number of active daemons in RHEL and Fedora, integrating into Glib was a good option. The last question was how Glib monitors the memory usage.</p><p>This work integrated the monitoring algorithm into Glib itself to monitor the local memory usage and memory PSI events. Two backends are introduced to the GMemoryMonitor API. According to systemd [3], the Linux kernel PSI event backend is a Linux-specific backend and it watches the Linux kernel memory PSI event and reports the event to the applications. The polling backend polls the memory usage periodically and estimates the free memory ratio. If the free memory ratio drops to a certain threshold, it signals the applications. The original DBus backend was kept for compatibility. The GMemoryMonitor API now runs independently without a daemon to feed data and is 100% compatible with the original API usage.</p><p>The Linux kernel PSI monitors and estimates the resource usage in a given time period. It generates an event for the listener when it detects usage problems, such as task stall time. The basic concept is that if a task is blocked by a resource for a period of time, the kernel signals the listener. The kernel takes on all the monitoring and event reporting tasks, which is beneficial. GMemoryMonitor sets up the PSI monitoring parameters and waits for the memory events. The poll backend is a fallback implementation when GMemoryMonitor can’t find any supported backends. It periodically polls the system memory usage and estimates the free memory ratio. If the ratio is lower than a certain threshold, it signals the caller.</p><p>By integrating the memory monitoring algorithm directly into Glib, this work successfully introduced the Linux PSI and Poll backends for the GMemoryMonitor API. This fundamental shift eliminates the dependency on an external monitor daemon, allowing GMemoryMonitor to operate independently and making it more reliable, particularly in containerized environments. Crucially, the new approach remains 100% compatible with the original API usage, while simplifying the system’s architecture and streamlining the data flow for memory pressure signals.</p><p>[1] <a href="https://docs.gtk.org/gio/iface.MemoryMonitor.html">https://docs.gtk.org/gio/iface.MemoryMonitor.html</a><br>[2] <a href="https://docs.kernel.org/accounting/psi.html">https://docs.kernel.org/accounting/psi.html</a><br>[3] <a href="https://systemd.io/MEMORY_PRESSURE/">https://systemd.io/MEMORY_PRESSURE/</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;The GMemoryMonitor [1] API always works with a memory monitoring backend that periodically monitors the memory usage and then signals the</summary>
+      
+    
+    
+    
+    
+    <category term="glib" scheme="https://blog.kate-cat.com/tags/glib/"/>
+    
+    <category term="GMemoryMonitor" scheme="https://blog.kate-cat.com/tags/GMemoryMonitor/"/>
+    
+    <category term="PSI" scheme="https://blog.kate-cat.com/tags/PSI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Work with AI tools using granite.code</title>
+    <link href="https://blog.kate-cat.com/2025/06/15/Work-with-AI-tools-using-granite-code/"/>
+    <id>https://blog.kate-cat.com/2025/06/15/Work-with-AI-tools-using-granite-code/</id>
+    <published>2025-06-15T13:53:52.000Z</published>
+    <updated>2025-06-15T15:58:32.024Z</updated>
+    
+    <content type="html"><![CDATA[<p>The used of AI tool to speed up the coding efficiency becomes a new trend in the programming field and industry. The upstream contributors and maintainers are trying to use those tool to improve the development speed and reduce the workload. Those new technologies also catch my eyes and I’ll give them a try. Many AI code assistance tools were proposed and they were based on the open AI model, for example Github copilot. But If you concern about the security and you don’t allow the information leak.</p><p>Here I’ll ask the local model Granite.code to tell us how to install and deply it locally. It gave me the answer shown bellow.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">As an AI developed by IBM, I don&#x27;t have the capability to directly guide you through deploying Granite.Code</span><br><span class="line">on your local machine as it&#x27;s not publicly available for such use. However, I can provide a general outline</span><br><span class="line">of steps you might follow if Granite.Code were available for local deployment:</span><br><span class="line"></span><br><span class="line">Check System Requirements: Ensure your laptop meets the necessary system requirements to run Granite.Code.</span><br><span class="line">This typically includes specifications like operating system version, RAM, and CPU capabilities.</span><br><span class="line"></span><br><span class="line">Download the Software: If Granite.Code were publicly available, you would download it from an official source.</span><br><span class="line">As of now, there&#x27;s no public release for local deployment.</span><br><span class="line"></span><br><span class="line">Installation: Extract or run the installer, following the instructions provided in the documentation. This</span><br><span class="line">usually involves agreeing to terms and conditions, choosing installation directory, etc.</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>Hmm, It try to invite the user to use the Could version. Here is the steps to deploy Granite.code to your local laptop. Moreover, first, you have to ensure you have a Mac M2 or have a GPU support. Then, checkout the IBM website to get the detailed step to deploy it and the URLs are shown as follows.</p><ul><li>Deploy ollama on a Mac <a href="https://www.ibm.com/granite/docs/run/granite-with-ollama/mac/">https://www.ibm.com/granite/docs/run/granite-with-ollama/mac/</a></li><li>vscode plugin, IBM Waston X code assistant <a href="https://www.ibm.com/granite/docs/use-cases/coding-assistant/">https://www.ibm.com/granite/docs/use-cases/coding-assistant/</a></li></ul><p>My configuration is a bit tricky since my working laptop doesn’t have a GPU or something can accelerate the AI compute. So, I ran the model on my Mac M2 (Yes, a Mac, haha) and tweaked the Watson code assistant to access the API server on my M2.</p><p>OK, now, I ask granite.code for a Glib hello world example and here is the answer. That gave a pieces of example and the expected out comes.<br><img src="/2025/06/15/Work-with-AI-tools-using-granite-code/hello.png" alt="Hello world"></p><p>Watson code assistant provide four main functions, Describe the code, unit test generator, document generator, and code completion. However, M2 is slow so I have to skip the code completion. I really love to use code describe, it give me a glance if I first trace the code.<br>Here is the example:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/explain up_daemon_get_on_ac_local</span><br></pre></td></tr></table></figure><p>I got:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">This C code is a function named </span><br><span class="line">up_daemon_get_on_ac_local</span><br><span class="line">. Here&#x27;s a breakdown of what it does:</span><br><span class="line"></span><br><span class="line">Function Signature:</span><br><span class="line"></span><br><span class="line">The function takes two parameters: a pointer to an </span><br><span class="line">UpDaemon</span><br><span class="line"> structure (</span><br><span class="line">daemon</span><br><span class="line">) and a boolean pointer (</span><br><span class="line">has_ac</span><br><span class="line">).</span><br><span class="line">It returns a boolean value (</span><br><span class="line">gboolean</span><br><span class="line">).</span><br><span class="line">Local Variables:</span><br><span class="line">...</span><br><span class="line">&lt;skip&gt; </span><br><span class="line">...</span><br><span class="line">In summary, this function checks each device associated with a daemon to see if there&#x27;s at least one that is both online and has AC power. If such a device exists, it sets </span><br><span class="line">result</span><br><span class="line">Copy to TRUE; otherwise, it remains FALSE. It also optionally updates the </span><br><span class="line">has_ac</span><br><span class="line"> parameter if set.</span><br></pre></td></tr></table></figure><p>It gave me a summary of input parameters, local vaiables, and a summary of the function. It took 1min to analyze the code<br>and generate the result. It is useful before you deep dive into the code.</p><p>The document generator generate the doxygen comment format. It it a bit different from GTK comment but I can translate<br>it to the GTK format. That is good for me. The example was shown as follows. It looks normal but it still needs some<br>work to make it to a API document.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @brief Retrieves whether the system is on AC power locally.</span><br><span class="line"> * </span><br><span class="line"> * This function checks each device in the list of power devices to determine if any are currently connected to AC power.</span><br><span class="line"> * If the &#x27;has_ac&#x27; parameter is not NULL, it will be set to TRUE if at least one device is connected to AC power.</span><br><span class="line"> * The main return value (result) indicates whether any device was found to be on AC power.</span><br><span class="line"> * </span><br><span class="line"> * @param daemon A pointer to an UpDaemon structure containing the list of power devices.</span><br><span class="line"> * @param has_ac A pointer to a boolean variable that will be set to TRUE if at least one device is connected to AC power, if not NULL.</span><br><span class="line"> * @return gboolean - Returns TRUE if any device was found on AC power, FALSE otherwise.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure><p>For the unit test code generator, it only gave the gtest code. However, for our Glib developers, we can’t use this feature.</p><p>Coding with a local AI assistance is a very good idea. It is like a virtual colleague to answer your question. However, it<br>needs a powerful computer to make it come true. My Mac M2 took a few minutes to analyze question and generate the result.<br>Base on this performance, The code completion can’t be a really powerful tool for me. The feature mentioned above is<br>nice and worst to wait for the result. It inspired me to make higher quality documents and it also listed all the possible<br>stuff. To have a AI tools for coding actually improves the code quality and development efficiency.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;The used of AI tool to speed up the coding efficiency becomes a new trend in the programming field and industry. The upstream contributor</summary>
+      
+    
+    
+    
+    
+    <category term="AI" scheme="https://blog.kate-cat.com/tags/AI/"/>
+    
+    <category term="AI code assistant" scheme="https://blog.kate-cat.com/tags/AI-code-assistant/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>upower: Support Multiple Keyboard Backlight LED Control</title>
+    <link href="https://blog.kate-cat.com/2025/03/13/upower-Support-Multiple-Keyboard-Backlight-LED-Control/"/>
+    <id>https://blog.kate-cat.com/2025/03/13/upower-Support-Multiple-Keyboard-Backlight-LED-Control/</id>
+    <published>2025-03-13T15:01:20.000Z</published>
+    <updated>2025-03-15T03:39:22.550Z</updated>
+    
+    <content type="html"><![CDATA[<p>Upower can only set one keyboard backlight LED brightness. It finds the first keyboard backlight LED sysfs entry and then set up the DBus API entry for it. This works on most of the laptops but can’t work on some gaming laptops which have more than one keyboard backlight LED needs to take care. Moreover, if a USB keyboard with backlight LED was attached to laptop, upower has to discover it and set up or remove the API entry dynamically. The previous MR [1] proposed an implementation to setup multiple brightness but it can’t add&#x2F;remove the device information automatically.<br>The new proposed MR [2] was based on udev event which gave as the device status when user install or remove a keyboard backlight LED device. Through this way, the DBus API entry and device information can be added&#x2F;removed with the the udev events like what we do for the batteries. In the mean time, a abstraction class for keyboard backlight LED was proposed so upower can support different implementation, such as Linux, FreeBSD, and more [3].  </p><p>[1] <a href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/203">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/203</a><br>[2] <a href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/258">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/258</a><br>[3] <a href="https://gitlab.freedesktop.org/upower/upower/-/issues/291">https://gitlab.freedesktop.org/upower/upower/-/issues/291</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Upower can only set one keyboard backlight LED brightness. It finds the first keyboard backlight LED sysfs entry and then set up the DBus</summary>
+      
+    
+    
+    
+    
+    <category term="upower" scheme="https://blog.kate-cat.com/tags/upower/"/>
+    
+    <category term="keyboard backlight LED" scheme="https://blog.kate-cat.com/tags/keyboard-backlight-LED/"/>
+    
+    <category term="brightness" scheme="https://blog.kate-cat.com/tags/brightness/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>The policy for connecting a low power charger in Upower</title>
+    <link href="https://blog.kate-cat.com/2025/02/09/upower-low-power-charger/"/>
+    <id>https://blog.kate-cat.com/2025/02/09/upower-low-power-charger/</id>
+    <published>2025-02-09T11:02:46.000Z</published>
+    <updated>2025-02-09T17:29:59.441Z</updated>
+    
+    <content type="html"><![CDATA[<p>Upower determines the battery charging status according to the battery charging status now. Upower sets the on_battery status to <code>no</code> when connecting any kind of chargers. In other words, upower ignores the battery charging status (charging&#x2F;discharging) when any charger connects to a device. The original policy is good for the most of laptops with a traditional AC power adaptor. Today, we can charge the battery through a PD charger (a type-C charger) which provides different capability of charging. Yet, this cause the problems for the devices. For example, we play the cellphone game with a 5w charger and the battery discharges to maintain the performance. In this case, upower thinks that a AC charger is online so upower can ignore the battery status. Therefore, battery continue to discharge until running out of battery. The vital gaming data may lost.</p><p>Alpine Linux folks found this issue and we tried to resolve it. Now, Upower was able to show the real status for the battery when a low power charger connect to the device. Upower determines the battery status based on the current value. Upower will set on_battery status to <code>yes</code>, if it finds the battery discharges (a negative current value) in any conditions. This work is waiting for Alpine Linux to test it. Once it get landed, this fix will be included in the next release of upower.</p><p>[1] <a href="https://gitlab.freedesktop.org/upower/upower/-/merge_requests/244">https://gitlab.freedesktop.org/upower/upower/-/merge_requests/244</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Upower determines the battery charging status according to the battery charging status now. Upower sets the on_battery status to &lt;code&gt;no</summary>
+      
+    
+    
+    
+    
+    <category term="upower" scheme="https://blog.kate-cat.com/tags/upower/"/>
+    
+    <category term="low power charger" scheme="https://blog.kate-cat.com/tags/low-power-charger/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Logitech G510 keyboard backlight supports multicolor LED API</title>
+    <link href="https://blog.kate-cat.com/2025/02/09/lg-g510-mcled/"/>
+    <id>https://blog.kate-cat.com/2025/02/09/lg-g510-mcled/</id>
+    <published>2025-02-09T07:51:19.000Z</published>
+    <updated>2025-02-10T16:33:06.164Z</updated>
+    
+    <content type="html"><![CDATA[<p>We made the Logitech G510 keyboard to support standard multi-color LED API to configure the keyboard backlight LED colors and brightness. The legacy sysfs property “color” was removed. We invite the user or apps that configure LED color through that property to use the new one.</p><p>The G510 owner can change the color of the keyboard backlight LED through the following command</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># make LED show red.</span><br><span class="line">echo &quot;255 0 0&quot; &gt; /sys/class/led/g15::kbd_backlight/intensity</span><br></pre></td></tr></table></figure><p>and change the brightness through</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;100&quot; &gt; /sys/class/led/g15::kbd_backlight/brightness</span><br></pre></td></tr></table></figure><p>Thank you for Hans’ review.</p><p>[1] <a href="https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u">https://lore.kernel.org/linux-input/20250131140241.586305-1-hpa@redhat.com/T/#u</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;We made the Logitech G510 keyboard to support standard multi-color LED API to configure the keyboard backlight LED colors and brightness.</summary>
+      
+    
+    
+    
+    
+    <category term="kernel" scheme="https://blog.kate-cat.com/tags/kernel/"/>
+    
+    <category term="linux-input" scheme="https://blog.kate-cat.com/tags/linux-input/"/>
+    
+  </entry>
+  
+</feed>
