@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Eliminating the Monitor Daemon: New PSI and Poll Backends for Glib&#39;s GMemoryMonitor API | Kate Cat</title>
+  <meta name="author" content="Kate Hsuan">
+  
+  <meta name="description" content="@smallorange">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Eliminating the Monitor Daemon: New PSI and Poll Backends for Glib&#39;s GMemoryMonitor API"/>
+  <meta property="og:site_name" content="Kate Cat"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Kate Cat</a></h1>
+  <h2><a href="/">@smallorange</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="title-Eliminating-the-Monitor-Daemon-New-PSI-and-Poll-Backends-for-Glib-s-GMemoryMonitor-API" class="h-entry title" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-12-13T08:34:18.000Z"><a href="/2025/12/13/Eliminating-the-Monitor-Daemon-New-PSI-and-Poll-Backends-for-Glib-s-GMemoryMonitor-API/">2025-12-13</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Eliminating the Monitor Daemon: New PSI and Poll Backends for Glib&#39;s GMemoryMonitor API</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>The GMemoryMonitor [1] API always works with a memory monitoring backend that periodically monitors the memory usage and then signals the GMemoryMonitor API about the low memory status. The monitor daemon monitors the system memory usage and listens to the Linux Kernel memory pressure stall information (PSI) [2], then reports the event to the GMemoryMonitor API via DBus signal.  The daemon signals the application and then the application starts to reduce its memory usage demand. However, the reliance on a daemon means GMemoryMonitor may not be able to work if the daemon fails or if the application is running in a container. These backends daemons support the API and Linux system, including RHEL and Fedora, to run.To simplify the data flow and reduce the number of active daemons in RHEL and Fedora, integrating into Glib was a good option. The last question was how Glib monitors the memory usage.</p>
+<p>This work integrated the monitoring algorithm into Glib itself to monitor the local memory usage and memory PSI events. Two backends are introduced to the GMemoryMonitor API. According to systemd [3], the Linux kernel PSI event backend is a Linux-specific backend and it watches the Linux kernel memory PSI event and reports the event to the applications. The polling backend polls the memory usage periodically and estimates the free memory ratio. If the free memory ratio drops to a certain threshold, it signals the applications. The original DBus backend was kept for compatibility. The GMemoryMonitor API now runs independently without a daemon to feed data and is 100% compatible with the original API usage.</p>
+<p>The Linux kernel PSI monitors and estimates the resource usage in a given time period. It generates an event for the listener when it detects usage problems, such as task stall time. The basic concept is that if a task is blocked by a resource for a period of time, the kernel signals the listener. The kernel takes on all the monitoring and event reporting tasks, which is beneficial. GMemoryMonitor sets up the PSI monitoring parameters and waits for the memory events. The poll backend is a fallback implementation when GMemoryMonitor can’t find any supported backends. It periodically polls the system memory usage and estimates the free memory ratio. If the ratio is lower than a certain threshold, it signals the caller.</p>
+<p>By integrating the memory monitoring algorithm directly into Glib, this work successfully introduced the Linux PSI and Poll backends for the GMemoryMonitor API. This fundamental shift eliminates the dependency on an external monitor daemon, allowing GMemoryMonitor to operate independently and making it more reliable, particularly in containerized environments. Crucially, the new approach remains 100% compatible with the original API usage, while simplifying the system’s architecture and streamlining the data flow for memory pressure signals.</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://docs.gtk.org/gio/iface.MemoryMonitor.html">https://docs.gtk.org/gio/iface.MemoryMonitor.html</a><br>[2] <a target="_blank" rel="noopener" href="https://docs.kernel.org/accounting/psi.html">https://docs.kernel.org/accounting/psi.html</a><br>[3] <a target="_blank" rel="noopener" href="https://systemd.io/MEMORY_PRESSURE/">https://systemd.io/MEMORY_PRESSURE/</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/glib/">glib</a>, <a href="/tags/GMemoryMonitor/">GMemoryMonitor</a>, <a href="/tags/PSI/">PSI</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://blog.kate-cat.com/2025/12/13/Eliminating-the-Monitor-Daemon-New-PSI-and-Poll-Backends-for-Glib-s-GMemoryMonitor-API/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="blog.kate-cat.com">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-code-assistant/">AI code assistant</a><small>1</small></li>
+  
+    <li><a href="/tags/GMemoryMonitor/">GMemoryMonitor</a><small>1</small></li>
+  
+    <li><a href="/tags/PSI/">PSI</a><small>1</small></li>
+  
+    <li><a href="/tags/brightness/">brightness</a><small>1</small></li>
+  
+    <li><a href="/tags/glib/">glib</a><small>1</small></li>
+  
+    <li><a href="/tags/kernel/">kernel</a><small>1</small></li>
+  
+    <li><a href="/tags/keyboard-backlight-LED/">keyboard backlight LED</a><small>1</small></li>
+  
+    <li><a href="/tags/linux-input/">linux-input</a><small>1</small></li>
+  
+    <li><a href="/tags/low-power-charger/">low power charger</a><small>1</small></li>
+  
+    <li><a href="/tags/upower/">upower</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+  <div class="widget widget-archives">
+    <h3 class="title">Archives</h3>
+    <div class="entry">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2025 Kate Hsuan
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
