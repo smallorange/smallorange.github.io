@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Intel vision-drivers package can be found in the RPMfusion | Kate Cat</title>
+  <title>Intel vision-driver package can be found in the RPMfusion | Kate Cat</title>
   <meta name="author" content="Kate Hsuan">
   
   <meta name="description" content="@smallorange">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Intel vision-drivers package can be found in the RPMfusion"/>
+  <meta property="og:title" content="Intel vision-driver package can be found in the RPMfusion"/>
   <meta property="og:site_name" content="Kate Cat"/>
 
   
@@ -58,20 +58,17 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">Intel vision-drivers package can be found in the RPMfusion</h1>
+    <h1 class="p-name title" itemprop="headline name">Intel vision-driver package can be found in the RPMfusion</h1>
   
 
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p>tags:</p>
-<ul>
-<li>vision-drivers</li>
-<li>Intel</li>
-<li>IPU7</li>
-</ul>
-<hr>
-<p>The IPU7 solution can be found in Intel Luna Lake platform. It processes the video from the MIPI camera and presents the image frame to the user space programs. However, Intel proposed an Intel vision technology to improve the personal security, such as automatically dimming the screen when someone stands behind of the user. A tiny chip was placed on the MIPI between the camera sensor and</p>
+        <p>The IPU7 solution can be found in Intel Luna Lake platform. It processes the video from the MIPI camera and presents the image frame to the user space programs. However, Intel proposed an Intel vision technology to improve the personal security, such as automatically dimming the screen when someone stands behind of the user. A tiny chip was placed on the MIPI between the camera sensor and CPU. However, the IPU7 was enabled in Fedora but the driver for this chip can be found in upstream kernel. The user can see the sensor was enabled but they can’t used it without this vision-driver [1].</p>
+<p>Now, for the Fedora &gt;&#x3D; 43, the vision-driver package can be found in RPMfusion [2]. If your Luna lake requires this driver to enable the camera, you can just simply run after enable the RPMFusion rpm repo.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dnf install intel-vision</span><br></pre></td></tr></table></figure>
+<p>After installing the package, reboot the system and the camera works :)</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://github.com/intel/vision-drivers">https://github.com/intel/vision-drivers</a><br>[2] <a target="_blank" rel="noopener" href="https://rpmfusion.org/Configuration">https://rpmfusion.org/Configuration</a></p>
 
       
     </div>
@@ -79,6 +76,11 @@
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/vision-drivers/">vision-drivers</a>, <a href="/tags/Intel/">Intel</a>, <a href="/tags/IPU7/">IPU7</a>
+  </div>
+
       
       <div class="clearfix"></div>
     </footer>
@@ -129,6 +131,10 @@
   
     <li><a href="/tags/GMemoryMonitor/">GMemoryMonitor</a><small>1</small></li>
   
+    <li><a href="/tags/IPU7/">IPU7</a><small>1</small></li>
+  
+    <li><a href="/tags/Intel/">Intel</a><small>1</small></li>
+  
     <li><a href="/tags/PSI/">PSI</a><small>1</small></li>
   
     <li><a href="/tags/brightness/">brightness</a><small>1</small></li>
@@ -144,6 +150,8 @@
     <li><a href="/tags/low-power-charger/">low power charger</a><small>1</small></li>
   
     <li><a href="/tags/upower/">upower</a><small>2</small></li>
+  
+    <li><a href="/tags/vision-drivers/">vision-drivers</a><small>1</small></li>
   
   </ul>
 </div>
