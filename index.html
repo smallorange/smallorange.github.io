@@ -49,6 +49,40 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-Skip-systemd-inhibitor-when-switching-the-power-status" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2026-03-09T03:23:04.000Z"><a href="/2026/03/09/Skip-systemd-inhibitor-when-switching-the-power-status/">2026-03-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2026/03/09/Skip-systemd-inhibitor-when-switching-the-power-status/">Skip systemd inhibitor when switching the power status</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>Systemd inhibitor blocks the power switching operations when needed. However, it also blocks the CriticalPowerAction when upower tries to hibernate or poweroff the system.</p>
+<p>To skip is, put the following Polkit rules in <code>/usr/share/polit-1/rules.d</code> for your app.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">polkit.addRule(function(action, subject) &#123;</span><br><span class="line">    if ((action.id == &quot;org.freedesktop.login1.power-off-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.reboot-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.halt-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.suspend-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.hibernate-ignore-inhibit&quot;) &amp;&amp;</span><br><span class="line">        subject.user == &quot;root&quot;) &#123;</span><br><span class="line">        return polkit.Result.YES;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article id="post-Intel-vision-drivers-package-can-be-found-in-the-RPMfusion" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -323,6 +357,8 @@
   
     <li><a href="/tags/glib/">glib</a><small>1</small></li>
   
+    <li><a href="/tags/inhibitor/">inhibitor</a><small>1</small></li>
+  
     <li><a href="/tags/kernel/">kernel</a><small>1</small></li>
   
     <li><a href="/tags/keyboard-backlight-LED/">keyboard backlight LED</a><small>1</small></li>
@@ -331,7 +367,9 @@
   
     <li><a href="/tags/low-power-charger/">low power charger</a><small>1</small></li>
   
-    <li><a href="/tags/upower/">upower</a><small>2</small></li>
+    <li><a href="/tags/systemd/">systemd</a><small>1</small></li>
+  
+    <li><a href="/tags/upower/">upower</a><small>3</small></li>
   
     <li><a href="/tags/vision-drivers/">vision-drivers</a><small>1</small></li>
   
@@ -343,7 +381,7 @@
   <div class="widget widget-archives">
     <h3 class="title">Archives</h3>
     <div class="entry">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 

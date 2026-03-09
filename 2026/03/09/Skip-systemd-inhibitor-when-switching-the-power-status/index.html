@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>IPU7 | Kate Cat</title>
+  <title>Skip systemd inhibitor when switching the power status | Kate Cat</title>
   <meta name="author" content="Kate Hsuan">
   
   <meta name="description" content="@smallorange">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Skip systemd inhibitor when switching the power status"/>
   <meta property="og:site_name" content="Kate Cat"/>
 
   
@@ -48,30 +48,63 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">IPU7</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Skip-systemd-inhibitor-when-switching-the-power-status" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2026-03-09T03:23:04.000Z"><a href="/2026/03/09/Skip-systemd-inhibitor-when-switching-the-power-status/">2026-03-09</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Skip systemd inhibitor when switching the power status</h1>
+  
 
-<div class="archive">
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>Systemd inhibitor blocks the power switching operations when needed. However, it also blocks the CriticalPowerAction when upower tries to hibernate or poweroff the system.</p>
+<p>To skip is, put the following Polkit rules in <code>/usr/share/polit-1/rules.d</code> for your app.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">polkit.addRule(function(action, subject) &#123;</span><br><span class="line">    if ((action.id == &quot;org.freedesktop.login1.power-off-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.reboot-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.halt-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.suspend-ignore-inhibit&quot; ||</span><br><span class="line">         action.id == &quot;org.freedesktop.login1.hibernate-ignore-inhibit&quot;) &amp;&amp;</span><br><span class="line">        subject.user == &quot;root&quot;) &#123;</span><br><span class="line">        return polkit.Result.YES;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
   
-    <article class="post">
-      <div class="post-content">
-        <header>
-          <div class="icon"></div>
-          <time datetime="2026-03-09T02:27:55.000Z"><a href="/2026/03/09/Intel-vision-drivers-package-can-be-found-in-the-RPMfusion/">2026-03-09</a></time>
-          
-            <h1 class="title"><a href="/2026/03/09/Intel-vision-drivers-package-can-be-found-in-the-RPMfusion/">Intel vision-driver package can be found in the RPMfusion</a></h1>
-          
-        </header>
-      </div>
-    </article>
-  
-</div>
+  <div class="tags">
+    <a href="/tags/systemd/">systemd</a>, <a href="/tags/upower/">upower</a>, <a href="/tags/inhibitor/">inhibitor</a>
+  </div>
 
-<nav id="pagination">
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
   
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://blog.kate-cat.com/2026/03/09/Skip-systemd-inhibitor-when-switching-the-power-status/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
   
-  <div class="clearfix"></div>
-</nav>
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
