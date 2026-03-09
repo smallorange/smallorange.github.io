@@ -6,7 +6,7 @@
   <link href="https://blog.kate-cat.com/atom.xml" rel="self"/>
   
   <link href="https://blog.kate-cat.com/"/>
-  <updated>2025-12-13T08:48:52.771Z</updated>
+  <updated>2026-03-09T02:40:44.377Z</updated>
   <id>https://blog.kate-cat.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Intel vision-drivers package can be found in the RPMfusion</title>
+    <link href="https://blog.kate-cat.com/2026/03/09/Intel-vision-drivers-package-can-be-found-in-the-RPMfusion/"/>
+    <id>https://blog.kate-cat.com/2026/03/09/Intel-vision-drivers-package-can-be-found-in-the-RPMfusion/</id>
+    <published>2026-03-09T02:27:55.000Z</published>
+    <updated>2026-03-09T02:40:44.377Z</updated>
+    
+    <content type="html"><![CDATA[<p>tags:</p><ul><li>vision-drivers</li><li>Intel</li><li>IPU7</li></ul><hr><p>The IPU7 solution can be found in Intel Luna Lake platform. It processes the video from the MIPI camera and presents the image frame to the user space programs. However, Intel proposed an Intel vision technology to improve the personal security, such as automatically dimming the screen when someone stands behind of the user. A tiny chip was placed on the MIPI between the camera sensor and</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;vision-drivers&lt;/li&gt;
+&lt;li&gt;Intel&lt;/li&gt;
+&lt;li&gt;IPU7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;The IPU7 solution can be found in Intel Luna Lake platf</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Eliminating the Monitor Daemon: New PSI and Poll Backends for Glib&#39;s GMemoryMonitor API</title>
